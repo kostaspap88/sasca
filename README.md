@@ -4,6 +4,6 @@ Soft Analytical Side-Channel Attack (SASCA)
 
 -Authors (alphabetically): Kostas Papagiannopoulos, Thierry Simon
 
--If you use this, cite kpcrypto.net
+-If you use this, cite https://kpcrypto.net
 
 -Contact: kostaspap88@gmail.com
