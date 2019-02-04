@@ -10,7 +10,7 @@ global fg attack_values no_attack_traces
 attack_traces=zeros(1,no_attack_traces);
 
 %for all leakage and knowledge nodes
-node_names=keys(attack_values)
+node_names=keys(attack_values);
 
 for i=1:attack_values.Count
     
@@ -27,12 +27,11 @@ for i=1:attack_values.Count
     if (strcmp(fg.Nodes.FactorType{index},'leak'))
         
         %simulate attack traces
-        mu=fg.Nodes.TemplateMean{index}(values+1);
-        sigma=fg.Nodes.TemplateStd{index}(values+1);
-    
-        for j=1:no_attack_traces
-            attack_traces(j)=normrnd(mu(values(j)+1),sigma(values(j)+1));
-        end
+        mu=fg.Nodes.TemplateMean{index}(values(:)+1);
+        sigma=fg.Nodes.TemplateStd{index}(values(:)+1);
+            
+        attack_traces=normrnd(mu,sigma);
+
         fg.Nodes.AttackTraces{index}=attack_traces;
     end
 end

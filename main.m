@@ -10,7 +10,7 @@ clear all;
 specify_config();
 
 %specify the global variables used by main.m
-global fg no_sim_experiments no_attack_traces secret_value fg_spec attack_values;
+global fg no_sim_experiments no_attack_traces secret_value fg_spec attack_values operator_table;
 
 %specify the necessary crypto operators for the cipher
 %->you need to specify any custom cryptographic operators your cipher needs
@@ -33,7 +33,7 @@ specify_templates();
 %the fg.Node fields .TemplateMean and .TemplateStd are updated
 
 %run SASCA for several simulated experiments
-for i=1:no_sim_experiments
+for exp_no=1:no_sim_experiments
     
     %simulate attack values of the current experiment
     %->you need to specify the computation of intermediate values
@@ -46,16 +46,23 @@ for i=1:no_sim_experiments
     generate_attack_traces();
     %the fg.Node fields .AttackValues and .AttackTraces are updated
     
-    %belief propagation algorithm on the factor graph
-    key_prob{j}=belief_propagation();
+    %run SASCA on the same dataset using different number of attack traces
+    for current_no_attack_traces = no_attack_traces:no_attack_traces
+  
+        %belief propagation algorithm on the factor graph
+        key_prob{exp_no,current_no_attack_traces}=belief_propagation(current_no_attack_traces);
+        ext_result = key_prob{exp_no,current_no_attack_traces}
+    end
     
 end
+
+banana_co = 'hello'
 
 
 
 
 %repeat SASCA for "no_attack_traces" 
- max_attack_traces=no_attack_traces; %--UGLY CODE
+% max_attack_traces=no_attack_traces; %--UGLY CODE
 % index=1;
 % for no_attack_traces=1:max_attack_traces
 %     

@@ -4,16 +4,17 @@
 function specify_attack_values()
 
 
-global fg secret_value attack_values no_attack_traces;
+global fg secret_value attack_values no_attack_traces value_max;
 
 %initialize the attack values table
 attack_values = containers.Map();
 
 %specify the value of the unknown secret key
-secret_value=0;
+secret_value=2;
 
 %simulate the attack values for every known or leaky value of the factor graph
-x=2*ones(1,no_attack_traces); %fixed input e.g. x=2 (known during attack)
+%x=2*ones(1,no_attack_traces); %fixed input e.g. x=2 (known during attack)
+x=randi(value_max+1,1,no_attack_traces)-1; %random input (known during attack)
 k=secret_value*ones(1,no_attack_traces); %fixed key k=0 (unknown during attack)
 y=bitxor(x,k); % y = k xor x 
 

@@ -10,7 +10,7 @@ function specify_config()
 %number of experiments: how many times do I want to execute Belief
 %Propagation, while simulating the dataset again for every experiment
 global no_sim_experiments;
-no_sim_experiments=2;
+no_sim_experiments=1;
 
 %size of intermediate values that we attack/template in bits
 global value_bitsize;
@@ -19,16 +19,16 @@ value_bitsize=2;
 
 %number of traces used per SASCA attack phase
 global no_attack_traces;
-no_attack_traces=4;
+no_attack_traces=5;
 
 %number of iterations of Belief Propagation algorithm, i.e. how many times
 %I perform message passing using BP
 global no_bp_iterations;
-no_bp_iterations=4;
+no_bp_iterations=5;
 
 %simulated noise level - standard deviation
 global noise_sigma;
-noise_sigma=1;
+noise_sigma=0.3;
 
 %factor graph specification by user. Contains all information about the
 %structure of the factor graph

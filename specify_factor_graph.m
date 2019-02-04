@@ -32,6 +32,11 @@ op_type={'xor21'}; %i.e. XOR1 is a xor21 operator
 %specify which factor in the graph is the key
 secret_name='k';
 
+%specify which leakage and knowledge nodes are constant and which are
+%random 
+constant_factors={'Lk'};
+random_factors={'Kx','Ly'};
+%random_factors={};
 
 %store the user specification globally in fg_spec
 fg_spec.S=s;
@@ -43,6 +48,8 @@ fg_spec.OpNode=op_node;
 fg_spec.InputOpNode=input_op_node;
 fg_spec.OutputOpNode=output_op_node;
 fg_spec.OpType=op_type;
+fg_spec.ConstantFactors=constant_factors;
+fg_spec.RandomFactors=random_factors;
 
 
 
