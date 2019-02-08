@@ -146,10 +146,10 @@ and21_operator.NoOperands=3;
 and21_operator.Prob{1,1}=pc_and21_out1;
 %the next entry specifies the cond.prob. matrix when we send messages
 %towards the input, in particular on the 2nd input.
-and21_operator.Prob{1,2}=pc_and21_int1;
+and21_operator.Prob{1,2}=pc_and21_in1;
 %the next entry specifies the cond.prob. matrix when we send messages
 %towards the output, in particular on the 1st output.
-and21_operator.Prob{2,1}=pc_xor21_in2;
+and21_operator.Prob{2,1}=pc_and21_in2;
 %notice that the structure of xor21 implies that the conditional prob.
 %matrix is the same, regardless of direction. This does not hold in
 %general.
