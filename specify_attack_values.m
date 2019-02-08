@@ -10,7 +10,7 @@ global fg secret_value attack_values no_attack_traces value_max;
 attack_values = containers.Map();
 
 %specify the value of the unknown secret key
-secret_value=2;
+secret_value=1;
 
 %simulate the attack values for every known or leaky value of the factor graph
 %x=2*ones(1,no_attack_traces); %fixed input e.g. x=2 (known during attack)

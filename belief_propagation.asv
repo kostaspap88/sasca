@@ -194,8 +194,8 @@ for iteration=1:no_bp_iterations
                     %variable index is 'index' (in1/in2/... or out1/out2/...)
                     op_prob=operator_entry.Prob{direction,index};
                     
-                    op_probablity=operator_entry.Probability;
-                    op_table=operator_entry.Table;
+                    op_probablity=operator.Probability;
+                    op_table=operator.Table;
 
                     %get the number of operands in the operator_entry
                     no_operands=operator_entry.NoOperands;
@@ -205,38 +205,48 @@ for iteration=1:no_bp_iterations
                     for k=1:length(message_creation_vars)
                         prod_message{k}=fg.Nodes.Message{current_factor_node,message_creation_vars(k)};
                     end
-
                     
-                    %GENERALIZE THIS MORE
-                    switch no_operands
+                    
+                    sum_message=zeros(1,value_number);
+                    for k=1:size(op_table,2)
+                        prob=op_prob(op_table(:,i))
+                        sum_message(x1)=sum_message(x1)+prob*prod_message{1}(x2)*prod_message{2}(x3);
                         
-                        case 3
-                            
-                        sum_message=zeros(1,value_number);
-                        for x1=1:value_number
-                            for x2=1:value_number
-                                for x3=1:value_number
-                                    prob=op_prob(x1,x2,x3);
-                                    
-                                    sum_message(x1)=sum_message(x1)+prob*prod_message{1}(x2)*prod_message{2}(x3);
-                                end
-                            end
-                        end
                         
-                        case 2
-                            
-                        sum_message=zeros(1,value_number);
-                        for x1=1:value_number
-                            for x2=1:value_number
-                                prob=op_prob(x1,x2);
-                                    
-                                sum_message(x1)=sum_message(x1)+prob*prod_message{1}(x2);
-                            end
-                        end
-                        
-                            
                     end
-                    %END OF GENERALIZABLE PART
+                    
+                    
+                    
+%                     %GENERALIZE THIS MORE
+%                     switch no_operands
+%                         
+%                         case 3
+%                             
+%                         sum_message=zeros(1,value_number);
+%                         for x1=1:value_number
+%                             for x2=1:value_number
+%                                 for x3=1:value_number
+%                                     prob=op_prob(x1,x2,x3);
+%                                     
+%                                     sum_message(x1)=sum_message(x1)+prob*prod_message{1}(x2)*prod_message{2}(x3);
+%                                 end
+%                             end
+%                         end
+%                         
+%                         case 2
+%                             
+%                         sum_message=zeros(1,value_number);
+%                         for x1=1:value_number
+%                             for x2=1:value_number
+%                                 prob=op_prob(x1,x2);
+%                                     
+%                                 sum_message(x1)=sum_message(x1)+prob*prod_message{1}(x2);
+%                             end
+%                         end
+%                         
+%                             
+%                     end
+%                     %END OF GENERALIZABLE PART
                     
                     message=sum_message/sum(sum_message); 
             end

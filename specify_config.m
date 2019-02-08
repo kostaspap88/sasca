@@ -15,7 +15,7 @@ no_sim_experiments=1;
 %size of intermediate values that we attack/template in bits
 global value_bitsize;
 %value_size: number of bits
-value_bitsize=2;
+value_bitsize=1;
 
 %number of traces used per SASCA attack phase
 global no_attack_traces;
